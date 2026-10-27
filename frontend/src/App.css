@@ -1,0 +1,332 @@
+:root {
+  --bg-primary: #121212;
+  --bg-card: #1e1e1e;
+  --bg-input: #2b2b2b;
+  --bg-input-border: #444444;
+  --primary: #03dac6;
+  --primary-hover: #00bfa5;
+  --secondary: #bb86fc;
+  --danger: #cf6679;
+  --danger-hover: #b00020;
+  --listening: #ffb74d;
+  --speaking: #64b5f6;
+  --text-primary: #ffffff;
+  --text-muted: #a0a0a0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 16px 0;
+}
+
+/* Voice Status Bar */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #262626;
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  border-left: 5px solid var(--secondary);
+}
+
+.status-bar.listening {
+  border-left-color: var(--listening);
+  background-color: #2e2617;
+  animation: pulse-border 1.5s infinite;
+}
+
+.status-bar.speaking {
+  border-left-color: var(--speaking);
+  background-color: #172430;
+}
+
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(255, 183, 77, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 183, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 183, 77, 0); }
+}
+
+.status-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.status-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+/* Form controls */
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.input-with-button {
+  display: flex;
+  gap: 8px;
+}
+
+input, textarea {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--bg-input-border);
+  background: var(--bg-input);
+  color: #fff;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(3, 218, 198, 0.25);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Buttons */
+button {
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #3700b3;
+  color: #ffffff;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background-color: var(--primary);
+  color: #000;
+}
+
+button.primary:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+}
+
+button.secondary {
+  background-color: #333333;
+  color: #fff;
+}
+
+button.secondary:hover:not(:disabled) {
+  background-color: #444444;
+}
+
+button.danger {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+button.voice-btn {
+  background-color: #2f2a4a;
+  border: 1px solid #5a5280;
+  color: #e0d9ff;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+button.voice-btn.active {
+  background-color: #e65100;
+  border-color: #ff9800;
+  color: #fff;
+  animation: pulse-mic 1s infinite alternate;
+}
+
+@keyframes pulse-mic {
+  from { background-color: #e65100; }
+  to { background-color: #ff9800; }
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* Info Banner */
+.info-box {
+  background: #172433;
+  border: 1px solid #28547a;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #b8daf5;
+}
+
+.info-box p {
+  margin: 4px 0;
+}
+
+.error-banner {
+  background: #3b181e;
+  border: 1px solid var(--danger);
+  color: #ffcdd2;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card);
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.user-badge {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Email list */
+.email-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.email-item {
+  background: var(--bg-input);
+  border: 1px solid #3c3c3c;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.email-item.reading {
+  border-color: var(--speaking);
+  background-color: #1a2a3a;
+  box-shadow: 0 0 10px rgba(100, 181, 246, 0.4);
+}
+
+.email-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.email-sender {
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.email-subject {
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.email-body {
+  color: #d0d0d0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.4;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.email-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
